@@ -20,12 +20,12 @@
                 <div class="search-icon">
                     <i class="fa-solid fa-magnifying-glass fa-xs"></i>
                 </div>
-                <input type="text">
+                <input type="text" #box (keyup)="selectSearch(box.value)" placeholder="Search">
             </div>
         </div>
         <div class="champions">
             <ul>
-                <li *ngFor="let champion of getFilteredChampions()">
+                <li *ngFor="let champion of getChampionsFilteredBySearch()">
                     <div class="champion">
                         <div class="champion-image">
                             <img src={{champion.image.sprite}} alt={{champion.name}}>
