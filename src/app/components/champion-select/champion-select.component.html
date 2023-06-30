@@ -5,16 +5,16 @@
         </div>
         <div class="options-bar">
             <div class="roles">
-                <img class="role-icon" [class.selected]="selectedRole === 'top'" (click)="selectRole('top')"
+                <img class="role-icon" [class.selected]="selectedRole === 'Top'" (click)="selectRole('Top')"
                     src="../../../assets/images/roles/top.webp" alt="Top">
-                <img class="role-icon" [class.selected]="selectedRole === 'jungler'" (click)="selectRole('jungler')"
-                    src="../../../assets/images/roles/jungle.webp" alt="Jungler">
-                <img class="role-icon" [class.selected]="selectedRole === 'middle'" (click)="selectRole('middle')"
-                    src="../../../assets/images/roles/mid.webp" alt="Middle">
-                <img class="role-icon" [class.selected]="selectedRole === 'bottom'" (click)="selectRole('bottom')"
-                    src="../../../assets/images/roles/bot.webp" alt="Ad Carry">
-                <img class="role-icon" [class.selected]="selectedRole === 'support'" (click)="selectRole('support')"
-                    src="../../../assets/images/roles/support.webp" alt="Support">
+                <img class="role-icon" [class.selected]="selectedRole === 'Selva'" (click)="selectRole('Selva')"
+                    src="../../../assets/images/roles/jungle.webp" alt="Selva">
+                <img class="role-icon" [class.selected]="selectedRole === 'Mid'" (click)="selectRole('Mid')"
+                    src="../../../assets/images/roles/mid.webp" alt="Mid">
+                <img class="role-icon" [class.selected]="selectedRole === 'Atirador'" (click)="selectRole('Atirador')"
+                    src="../../../assets/images/roles/bot.webp" alt="Atirador">
+                <img class="role-icon" [class.selected]="selectedRole === 'Suporte'" (click)="selectRole('Suporte')"
+                    src="../../../assets/images/roles/support.webp" alt="Suporte">
             </div>
             <div class="search-bar">
                 <div class="search-icon">
@@ -25,7 +25,7 @@
         </div>
         <div class="champions">
             <ul>
-                <li *ngFor="let champion of Champions">
+                <li *ngFor="let champion of getFilteredChampions()">
                     <div class="champion">
                         <div class="champion-image">
                             <img src={{champion.image.sprite}} alt={{champion.name}}>

@@ -8,12 +8,22 @@ import { IChampion } from 'src/config/interface';
   styleUrls: ['./champion-select.component.css']
 })
 export class ChampionSelectComponent {
-  selectedRole: string | null = null;
+  selectedRole: string = '';
+  Champions: IChampion[] = champions;
 
   selectRole(roleName: string): void {
-    this.selectedRole = roleName;
+    if (roleName === this.selectedRole) {
+      this.selectedRole = '';
+    }
+    else this.selectedRole = roleName;
   }
 
-  Champions: IChampion[] = champions;
+  getFilteredChampions(): IChampion[] {
+    if (this.selectedRole) {
+      return this.Champions.filter(champion => champion.roles.includes(this.selectedRole));
+    } else {
+      return this.Champions;
+    }
+  }
 
 }
