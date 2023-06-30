@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="content">
+        <div class="title">
+            <h1>DECLARE YOUR CHAMPIONS</h1>
+        </div>
+        <div class="options-bar">
+            <div class="roles">
+                <img class="role-icon" [class.selected]="selectedRole === 'top'" (click)="selectRole('top')"
+                    src="../../../assets/images/roles/top.webp" alt="Top">
+                <img class="role-icon" [class.selected]="selectedRole === 'jungler'" (click)="selectRole('jungler')"
+                    src="../../../assets/images/roles/jungle.webp" alt="Jungler">
+                <img class="role-icon" [class.selected]="selectedRole === 'middle'" (click)="selectRole('middle')"
+                    src="../../../assets/images/roles/mid.webp" alt="Middle">
+                <img class="role-icon" [class.selected]="selectedRole === 'bottom'" (click)="selectRole('bottom')"
+                    src="../../../assets/images/roles/bot.webp" alt="Ad Carry">
+                <img class="role-icon" [class.selected]="selectedRole === 'support'" (click)="selectRole('support')"
+                    src="../../../assets/images/roles/support.webp" alt="Support">
+            </div>
+            <div class="search-bar">
+                <div class="search-icon"></div>
+                <input type="text">
+            </div>
+        </div>
+        <div class="champions">
+            <ul>
+                <li *ngFor="let champion of Champions">
+                    <div class="champion">
+                        <div class="champion-image">
+                            <img src={{champion.image.sprite}} alt={{champion.name}}>
+                        </div>
+                        <div class="champion-name">
+                            {{champion.name}}
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

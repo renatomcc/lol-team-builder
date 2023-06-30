@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px 20px 0px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 800px;
+    height: 800px;
+    gap: 15px;
+}
+
+.title {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.options-bar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.role-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-image: url('/assets/images/icon-grey.png');
+    filter: grayscale(100%);
+}
+
+.role-icon.selected {
+    filter: none;
+}
+
+.champions {
+    height: 430px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.champions ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.champions ul li {
+    width: 100px;
+    height: 100px;
+    gap: 5px;
+}
+
+.champion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.champion-name {
+    color: white;
+}
+
+.champion-image img {
+    width: 80px;
+    height: 80px;
+}
