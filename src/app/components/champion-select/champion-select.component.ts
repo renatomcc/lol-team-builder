@@ -21,27 +21,25 @@ export class ChampionSelectComponent {
   }
 
   selectSearch(championName: string): void {
-    console.log('chamou select')
     this.selectedName = championName;
   }
 
-  getChampionsFilteredByRole(): IChampion[] {
-    if (this.selectedRole) {
+  getChampionsFilteredBySearch(): IChampion[] {
+    if (this.selectedRole && this.selectedName.length > 0) {
+      this.SortedChampions = this.Champions.filter(champion => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase())).filter(champion => champion.roles.includes(this.selectedRole));
+      return this.SortedChampions;
+    }
+
+    if (this.selectedRole && this.selectedName.length === 0) {
       this.SortedChampions = this.Champions.filter(champion => champion.roles.includes(this.selectedRole));
       return this.SortedChampions;
-    } else {
-      return this.Champions;
     }
-  }
 
-  getChampionsFilteredBySearch(): IChampion[] {
-    if (this.selectedName.length > 0) {
-      console.log('chamou filter')
+    if (!this.selectedRole && this.selectedName.length > 0) {
       this.SortedChampions = this.Champions.filter(champion => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase()));
-      console.log(this.SortedChampions.filter(champion => champion.name.includes(this.selectedName)));
       return this.SortedChampions;
-    } else {
-      return this.Champions;
     }
+
+    return this.Champions;
   }
 }
