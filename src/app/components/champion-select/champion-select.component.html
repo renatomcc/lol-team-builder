@@ -1,7 +1,8 @@
 <div class="container">
     <div class="content">
         <div class="title">
-            <h1>DECLARE YOUR CHAMPIONS</h1>
+            <h1 *ngIf="currentLane">DECLARE YOUR {{currentLane}}</h1>
+            <h1 *ngIf="!currentLane">CONFIRM YOUR TEAM</h1>
         </div>
         <div class="options-bar">
             <div class="roles">
@@ -25,8 +26,8 @@
         </div>
         <div class="champions">
             <ul>
-                <li *ngFor="let champion of getChampionsFilteredBySearch()">
-                    <div class="champion">
+                <li *ngFor="let champion of getFilteredChampions()">
+                    <div class="champion" (click)="chooseLaner(champion)">
                         <div class="champion-image">
                             <img src={{champion.image.sprite}} alt={{champion.name}}>
                         </div>
@@ -38,20 +39,20 @@
             </ul>
         </div>
         <div class="team">
-            <div class="toplaner">
-                <app-champion-card [champion]="topSelected"/>
+            <div class="toplaner" *ngIf="topSelected">
+                <app-champion-card [champion]="topSelected" />
             </div>
-            <div class="jungler">
-                <app-champion-card [champion]="junglerSelected"/>
+            <div class="jungler" *ngIf="junglerSelected">
+                <app-champion-card [champion]="junglerSelected" />
             </div>
-            <div class="mid">
-                <app-champion-card [champion]="midSelected"/>
+            <div class="mid" *ngIf="midSelected">
+                <app-champion-card [champion]="midSelected" />
             </div>
-            <div class="adcarry">
-                <app-champion-card [champion]="adSelected"/>
+            <div class="adcarry" *ngIf="adSelected">
+                <app-champion-card [champion]="adSelected" />
             </div>
-            <div class="support">
-                <app-champion-card [champion]="supportSelected"/>
+            <div class="support" *ngIf="supportSelected">
+                <app-champion-card [champion]="supportSelected" />
             </div>
         </div>
     </div>

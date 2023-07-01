@@ -14,7 +14,8 @@ export class ChampionSelectComponent {
   selectedName: string = '';
   Champions: IChampion[] = champions;
   SortedChampions: IChampion[] = champions;
-  topSelected: IChampion | undefined = this.Champions[0];
+  currentLane: string = 'TOP LANER';
+  topSelected: IChampion | undefined = undefined;
   junglerSelected: IChampion | undefined = undefined;
   midSelected: IChampion | undefined = undefined;
   adSelected: IChampion | undefined = undefined;
@@ -31,7 +32,7 @@ export class ChampionSelectComponent {
     this.selectedName = championName;
   }
 
-  getChampionsFilteredBySearch(): IChampion[] {
+  getFilteredChampions(): IChampion[] {
     if (this.selectedRole && this.selectedName.length > 0) {
       this.SortedChampions = this.Champions.filter(champion => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase())).filter(champion => champion.roles.includes(this.selectedRole));
       return this.SortedChampions;
@@ -48,5 +49,45 @@ export class ChampionSelectComponent {
     }
 
     return this.Champions;
+  }
+
+  chooseLaner(champion:IChampion): void {
+    switch(this.currentLane){
+      case('TOP LANER'):
+        this.topSelected = champion;
+        this.currentLane = 'JUNGLER';
+        break;
+      case ('JUNGLER'):
+        this.junglerSelected = champion;
+        this.currentLane = 'MID';
+        break;
+      case ('MID'):
+        this.midSelected = champion;
+        this.currentLane = 'AD CARRY';
+        break;
+      case ('AD CARRY'):
+        this.adSelected = champion;
+        this.currentLane = 'SUPPORT';
+        break;
+      case ('SUPPORT'):
+        this.supportSelected = champion;
+        this.currentLane = '';
+    }
+  }
+
+  changeLaner(lane: string):void{
+    switch(lane){
+      case('TOP'):
+        
+        break;
+      case('JUNGLE'):
+        break;
+      case('MID'):
+        break;
+      case('AD'):
+        break;
+      case('SUPPORT'):
+        break;
+    }
   }
 }

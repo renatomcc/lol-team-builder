@@ -1,0 +1,23 @@
+.champ-card {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.champ-image img{
+    width: 150px;
+}
+
+.champ-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.champ-roles {
+    display: flex;
+    justify-content: space-around;
+}
