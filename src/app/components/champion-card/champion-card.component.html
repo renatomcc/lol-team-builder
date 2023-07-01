@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="champ-card">
+        <div class="champ-image">
+            <img [src]="champion?.image?.full" [alt]="champion?.name" class="champion-image">
+        </div>
+        <div class="champ-infos">
+            <div class="champ-name">
+                <span>
+                    {{ champion?.name }}
+                </span>
+            </div>
+            <div class="champ-roles">
+                <span *ngFor="let role in champion.role">
+                    {{ role }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

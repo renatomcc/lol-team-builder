@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
 import { champions } from 'src/config/data';
 import { IChampion } from 'src/config/interface';
+import { ChampionCardComponent } from '../champion-card/champion-card.component';
 
 @Component({
   selector: 'app-champion-select',
   templateUrl: './champion-select.component.html',
   styleUrls: ['./champion-select.component.css'],
 })
+
 export class ChampionSelectComponent {
   selectedRole: string = '';
   selectedName: string = '';
   Champions: IChampion[] = champions;
   SortedChampions: IChampion[] = champions;
+  topSelected: IChampion | undefined = this.Champions[0];
+  junglerSelected: IChampion | undefined = undefined;
+  midSelected: IChampion | undefined = undefined;
+  adSelected: IChampion | undefined = undefined;
+  supportSelected: IChampion | undefined = undefined;
 
   selectRole(roleName: string): void {
     if (roleName === this.selectedRole) {

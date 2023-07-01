@@ -37,5 +37,22 @@
                 </li>
             </ul>
         </div>
+        <div class="team">
+            <div class="toplaner">
+                <app-champion-card [champion]="topSelected"/>
+            </div>
+            <div class="jungler">
+                <app-champion-card [champion]="junglerSelected"/>
+            </div>
+            <div class="mid">
+                <app-champion-card [champion]="midSelected"/>
+            </div>
+            <div class="adcarry">
+                <app-champion-card [champion]="adSelected"/>
+            </div>
+            <div class="support">
+                <app-champion-card [champion]="supportSelected"/>
+            </div>
+        </div>
     </div>
 </div>
