@@ -29,7 +29,7 @@
                 <li *ngFor="let champion of getFilteredChampions()">
                     <div class="champion" (click)="sendChampToLane(champion)">
                         <div class="champion-image">
-                            <img src={{champion.image.sprite}} alt={{champion.name}}>
+                            <img [src]="champion.image.sprite" [alt]="champion.name">
                         </div>
                         <div class="champion-name">
                             {{champion.name}}
@@ -40,20 +40,46 @@
         </div>
         <div class="team">
             <div class="lane" (click)="chooseLaner('TOP')">
-                <app-champion-card [champion]="topSelected" *ngIf="topSelected != undefined" />
+                <div class="icon-container" *ngIf="topSelected && !isRoleMatched(topSelected, 'Top')"
+                    (mouseover)="showTextBox = true" (mouseout)="showTextBox = false">
+                    <i class="fa-sharp fa-solid fa-circle-exclamation fa-lg"></i>
+                    <div class="text-box" *ngIf="showTextBox">Este campeão pode não ser apropriado para esta rota</div>
+                </div>
+                <app-champion-card [champion]="topSelected" *ngIf="topSelected"></app-champion-card>
             </div>
             <div class="lane" (click)="chooseLaner('JUNGLE')">
-                <app-champion-card [champion]="junglerSelected" *ngIf="junglerSelected != undefined" />
+                <div class="icon-container" *ngIf="junglerSelected && !isRoleMatched(junglerSelected, 'Selva')"
+                    (mouseover)="showTextBox = true" (mouseout)="showTextBox = false">
+                    <i class="fa-sharp fa-solid fa-circle-exclamation fa-lg"></i>
+                    <div class="text-box" *ngIf="showTextBox">Este campeão pode não ser apropriado para esta rota</div>
+                </div>
+                <app-champion-card [champion]="junglerSelected" *ngIf="junglerSelected"></app-champion-card>
             </div>
             <div class="lane" (click)="chooseLaner('MID')">
-                <app-champion-card [champion]="midSelected" *ngIf="midSelected != undefined" />
+                <div class="icon-container" *ngIf="midSelected && !isRoleMatched(midSelected, 'Mid')"
+                    (mouseover)="showTextBox = true" (mouseout)="showTextBox = false">
+                    <i class="fa-sharp fa-solid fa-circle-exclamation fa-lg"></i>
+                    <div class="text-box" *ngIf="showTextBox">Este campeão pode não ser apropriado para esta rota</div>
+                </div>
+                <app-champion-card [champion]="midSelected" *ngIf="midSelected"></app-champion-card>
             </div>
             <div class="lane" (click)="chooseLaner('AD')">
-                <app-champion-card [champion]="adSelected" *ngIf="adSelected != undefined" />
+                <div class="icon-container" *ngIf="adSelected && !isRoleMatched(adSelected, 'Atirador')"
+                    (mouseover)="showTextBox = true" (mouseout)="showTextBox = false">
+                    <i class="fa-sharp fa-solid fa-circle-exclamation fa-lg"></i>
+                    <div class="text-box" *ngIf="showTextBox">Este campeão pode não ser apropriado para esta rota</div>
+                </div>
+                <app-champion-card [champion]="adSelected" *ngIf="adSelected"></app-champion-card>
             </div>
             <div class="lane" (click)="chooseLaner('SUPPORT')">
-                <app-champion-card [champion]="supportSelected" *ngIf="supportSelected != undefined" />
+                <div class="icon-container" *ngIf="supportSelected && !isRoleMatched(supportSelected, 'Suporte')"
+                    (mouseover)="showTextBox = true" (mouseout)="showTextBox = false">
+                    <i class="fa-sharp fa-solid fa-circle-exclamation fa-lg"></i>
+                    <div class="text-box" *ngIf="showTextBox">Este campeão pode não ser apropriado para esta rota</div>
+                </div>
+                <app-champion-card [champion]="supportSelected" *ngIf="supportSelected"></app-champion-card>
             </div>
         </div>
+
     </div>
 </div>

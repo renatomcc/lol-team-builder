@@ -112,3 +112,29 @@
     border: 2px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
+
+.lane i {
+    position: absolute;
+    color: red;
+}
+
+.icon-container {
+    position: relative;
+}
+
+.text-box {
+    position: absolute;
+    width: 150px;
+    left: 4.5px;
+    top: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    transition: opacity 0.3s;
+}
+
+.icon-container:hover .text-box {
+    opacity: 1;
+}

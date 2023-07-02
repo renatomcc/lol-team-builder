@@ -25,6 +25,8 @@ export class ChampionSelectComponent {
 
   teamSelected: IChampion[] = [];
 
+  showTextBox: boolean = false;
+
 
   selectRole(roleName: string): void {
     if (roleName === this.selectedRole) {
@@ -125,5 +127,12 @@ export class ChampionSelectComponent {
 
   removeChampionFromTeam(champion: IChampion): void {
     this.teamSelected = this.teamSelected.filter(c => c !== champion);
+  }
+
+  isRoleMatched(champion: any, role: string): boolean {
+    if (champion && champion.roles && champion.roles.includes(role)) {
+      return true;
+    }
+    return false;
   }
 }
