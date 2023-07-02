@@ -122,6 +122,9 @@
     position: relative;
 }
 
+.icon-container i {
+    z-index: 3;
+}
 .text-box {
     position: absolute;
     width: 150px;
