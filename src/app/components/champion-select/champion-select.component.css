@@ -100,6 +100,15 @@
 
 .team {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     width: 800px;
+}
+
+.lane {
+    display: flex;
+    justify-content: center;
+    width: 152px;
+    height: 274.72px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
 }

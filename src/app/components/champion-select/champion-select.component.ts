@@ -10,16 +10,21 @@ import { ChampionCardComponent } from '../champion-card/champion-card.component'
 })
 
 export class ChampionSelectComponent {
-  selectedRole: string = '';
-  selectedName: string = '';
   Champions: IChampion[] = champions;
   SortedChampions: IChampion[] = champions;
-  currentLane: string = 'TOP LANER';
+
+  selectedRole: string = '';
+  selectedName: string = '';
+  currentLane: string = '';
+
   topSelected: IChampion | undefined = undefined;
   junglerSelected: IChampion | undefined = undefined;
   midSelected: IChampion | undefined = undefined;
   adSelected: IChampion | undefined = undefined;
   supportSelected: IChampion | undefined = undefined;
+
+  teamSelected: IChampion[] = [];
+
 
   selectRole(roleName: string): void {
     if (roleName === this.selectedRole) {
@@ -51,43 +56,74 @@ export class ChampionSelectComponent {
     return this.Champions;
   }
 
-  chooseLaner(champion:IChampion): void {
-    switch(this.currentLane){
-      case('TOP LANER'):
+  sendChampToLane(champion: IChampion): void {
+    if (this.teamSelected.includes(champion)) {
+      window.alert('Campeão já selecionado!');
+      return;
+    }
+    switch (this.currentLane) {
+      case ('TOP LANER'):
         this.topSelected = champion;
-        this.currentLane = 'JUNGLER';
+        this.addChampionToTeam(champion);
+        this.currentLane = '';
         break;
       case ('JUNGLER'):
         this.junglerSelected = champion;
-        this.currentLane = 'MID';
+        this.addChampionToTeam(champion);
+        this.currentLane = '';
         break;
       case ('MID'):
         this.midSelected = champion;
-        this.currentLane = 'AD CARRY';
+        this.addChampionToTeam(champion);
+        this.currentLane = '';
         break;
       case ('AD CARRY'):
         this.adSelected = champion;
-        this.currentLane = 'SUPPORT';
+        this.addChampionToTeam(champion);
+        this.currentLane = '';
         break;
       case ('SUPPORT'):
         this.supportSelected = champion;
+        this.addChampionToTeam(champion);
         this.currentLane = '';
     }
   }
 
-  changeLaner(lane: string):void{
-    switch(lane){
-      case('TOP'):
-        
+  chooseLaner(lane: string): void {
+    switch (lane) {
+      case ('TOP'):
+        if (this.topSelected) this.removeChampionFromTeam(this.topSelected);
+        this.topSelected = undefined;
+        this.currentLane = 'TOP LANER';
         break;
-      case('JUNGLE'):
+      case ('JUNGLE'):
+        if (this.junglerSelected) this.removeChampionFromTeam(this.junglerSelected);
+        this.junglerSelected = undefined;
+        this.currentLane = 'JUNGLER';
         break;
-      case('MID'):
+      case ('MID'):
+        if (this.midSelected) this.removeChampionFromTeam(this.midSelected);
+        this.midSelected = undefined;
+        this.currentLane = 'MID';
         break;
-      case('AD'):
+      case ('AD'):
+        if (this.adSelected) this.removeChampionFromTeam(this.adSelected);
+        this.adSelected = undefined;
+        this.currentLane = 'AD CARRY';
         break;
-      case('SUPPORT'):
+      case ('SUPPORT'):
+        if (this.supportSelected) this.removeChampionFromTeam(this.supportSelected);
+        this.supportSelected = undefined;
+        this.currentLane = 'SUPPORT';
         break;
     }
+  }
+
+  addChampionToTeam(champion: IChampion): void {
+    this.teamSelected = [...this.teamSelected, champion]
+  }
+
+  removeChampionFromTeam(champion: IChampion): void {
+    this.teamSelected = this.teamSelected.filter(c => c !== champion);
   }
 }

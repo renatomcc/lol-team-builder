@@ -27,7 +27,7 @@
         <div class="champions">
             <ul>
                 <li *ngFor="let champion of getFilteredChampions()">
-                    <div class="champion" (click)="chooseLaner(champion)">
+                    <div class="champion" (click)="sendChampToLane(champion)">
                         <div class="champion-image">
                             <img src={{champion.image.sprite}} alt={{champion.name}}>
                         </div>
@@ -39,20 +39,20 @@
             </ul>
         </div>
         <div class="team">
-            <div class="toplaner" *ngIf="topSelected">
-                <app-champion-card [champion]="topSelected" />
+            <div class="lane" (click)="chooseLaner('TOP')">
+                <app-champion-card [champion]="topSelected" *ngIf="topSelected != undefined" />
             </div>
-            <div class="jungler" *ngIf="junglerSelected">
-                <app-champion-card [champion]="junglerSelected" />
+            <div class="lane" (click)="chooseLaner('JUNGLE')">
+                <app-champion-card [champion]="junglerSelected" *ngIf="junglerSelected != undefined" />
             </div>
-            <div class="mid" *ngIf="midSelected">
-                <app-champion-card [champion]="midSelected" />
+            <div class="lane" (click)="chooseLaner('MID')">
+                <app-champion-card [champion]="midSelected" *ngIf="midSelected != undefined" />
             </div>
-            <div class="adcarry" *ngIf="adSelected">
-                <app-champion-card [champion]="adSelected" />
+            <div class="lane" (click)="chooseLaner('AD')">
+                <app-champion-card [champion]="adSelected" *ngIf="adSelected != undefined" />
             </div>
-            <div class="support" *ngIf="supportSelected">
-                <app-champion-card [champion]="supportSelected" />
+            <div class="lane" (click)="chooseLaner('SUPPORT')">
+                <app-champion-card [champion]="supportSelected" *ngIf="supportSelected != undefined" />
             </div>
         </div>
     </div>
