@@ -10,20 +10,27 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 800px;
     gap: 15px;
 }
 
 .title {
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    text-align: center;
 }
 
 .options-bar {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    padding: 0px 8px 0px 25px;
     align-items: center;
+}
+
+.roles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .role-icon {
@@ -63,25 +70,44 @@
 
 .champions {
     width: 800px;
-    height: 430px;
+    height: 480px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 .champions ul {
     display: flex;
+    justify-content: center;
     list-style: none;
     flex-wrap: wrap;
-    gap: 10px;
 }
 
 .champions ul li {
-    width: 100px;
-    height: 100px;
     gap: 5px;
 }
 
+.champions::-webkit-scrollbar {
+    transition: all ease-in-out 0.2s;
+    width: 6px;
+}
+
+.champions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.champions::-webkit-scrollbar-thumb {
+    background: #785a28;
+    border-radius: 4px;
+}
+
+.champions::-webkit-scrollbar-thumb:hover {
+    background: #cdbe91;
+}
+
+
 .champion {
+    width: 100px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,21 +119,27 @@
     color: white;
 }
 
-.champion-image img {
+.champion-image{
     width: 80px;
     height: 80px;
+    padding-bottom: 10px;
+}
+
+.champion-image img{
+    width: 80px;
 }
 
 .team {
     display: flex;
-    justify-content: space-between;
-    width: 800px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
 }
 
 .lane {
     display: flex;
     justify-content: center;
-    width: 152px;
+    width: 150px;
     height: 274.72px;
     border: 2px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
@@ -123,21 +155,34 @@
 }
 
 .icon-container i {
-    z-index: 3;
+    z-index: 6;
 }
+
 .text-box {
     position: absolute;
+    z-index: 5;
     width: 150px;
-    left: 4.5px;
+    left: 0;
     top: 0;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 10px;
     color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    transition: opacity 0.3s;
+    transition: all ease-in-out 0.3s;
 }
 
 .icon-container:hover .text-box {
     opacity: 1;
+}
+
+@media only screen and (max-width: 800px) {
+    .champions {
+        width: 340px;
+    }
+
+    .team {
+        width: 340px;
+        flex-wrap: wrap;
+    }
 }

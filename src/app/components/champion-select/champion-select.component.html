@@ -2,7 +2,8 @@
     <div class="content">
         <div class="title">
             <h1 *ngIf="currentLane">DECLARE YOUR {{currentLane}}</h1>
-            <h1 *ngIf="!currentLane">CONFIRM YOUR TEAM</h1>
+            <h1 *ngIf="!currentLane && !teamFull">CHOOSE YOUR TEAM</h1>
+            <h1 *ngIf="teamFull">CONFIRM YOUR TEAM</h1>
         </div>
         <div class="options-bar">
             <div class="roles">

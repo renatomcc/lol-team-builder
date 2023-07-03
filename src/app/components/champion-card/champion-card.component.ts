@@ -10,6 +10,9 @@ import { champions } from 'src/config/data';
 })
 export class ChampionCardComponent {
   @Input() champion: IChampion = champions[0];
+  showClassName: boolean = false;
+  showClassName2: boolean = false;
+
   getClasses(championRole: string): string {
     var classImage: string = "";
     switch (championRole) {
@@ -34,4 +37,5 @@ export class ChampionCardComponent {
     }
     return classImage;
   }
+  
 }

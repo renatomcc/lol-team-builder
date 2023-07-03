@@ -16,6 +16,7 @@ export class ChampionSelectComponent {
   selectedRole: string = '';
   selectedName: string = '';
   currentLane: string = '';
+  teamFull: boolean = false;
 
   topSelected: IChampion | undefined = undefined;
   junglerSelected: IChampion | undefined = undefined;
@@ -123,10 +124,14 @@ export class ChampionSelectComponent {
 
   addChampionToTeam(champion: IChampion): void {
     this.teamSelected = [...this.teamSelected, champion]
+    if (this.teamSelected.length == 5) {
+      this.teamFull = true;
+    }
   }
 
   removeChampionFromTeam(champion: IChampion): void {
     this.teamSelected = this.teamSelected.filter(c => c !== champion);
+    this.teamFull = false;
   }
 
   isRoleMatched(champion: any, role: string): boolean {

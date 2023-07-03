@@ -11,10 +11,13 @@
             </div>
             <div class="champ-roles">
                 <div class="role">
-                    <img [src]="getClasses(champion.tags[0])" [alt]="champion.tags[0]">
+                    <span class="className" *ngIf="showClassName"> {{champion.tags[0]}} </span>
+                    <img [src]="getClasses(champion.tags[0])" [alt]="champion.tags[0]" [title]="champion.tags[0]">
+
                 </div>
                 <div class="role" *ngIf="champion.roles[1]">
-                    <img [src]="getClasses(champion.tags[1])" [alt]="champion.tags[1]">
+                    <span class="className" *ngIf="showClassName2"> {{champion.tags[1]}} </span>
+                    <img [src]="getClasses(champion.tags[1])" [alt]="champion.tags[1]" [title]="champion.tags[1]">
                 </div>
             </div>
         </div>
