@@ -27,7 +27,7 @@
         </div>
         <div class="champions">
             <ul>
-                <li *ngFor="let champion of getFilteredChampions()">
+                <li *ngFor="let champion of SortedChampions$ | async">
                     <div class="champion" (click)="sendChampToLane(champion)">
                         <div class="champion-image">
                             <img [src]="champion.image.sprite" [alt]="champion.name">

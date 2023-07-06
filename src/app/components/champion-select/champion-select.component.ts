@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { champions } from 'src/config/data';
 import { IChampion } from 'src/config/interface';
-import { ChampionCardComponent } from '../champion-card/champion-card.component';
+import { filter, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-champion-select',
@@ -10,8 +10,8 @@ import { ChampionCardComponent } from '../champion-card/champion-card.component'
 })
 
 export class ChampionSelectComponent {
-  Champions: IChampion[] = champions;
-  SortedChampions: IChampion[] = champions;
+  Champions$ = of(champions);
+  SortedChampions$ = of(champions);
 
   selectedRole: string = '';
   selectedName: string = '';
@@ -32,31 +32,33 @@ export class ChampionSelectComponent {
   selectRole(roleName: string): void {
     if (roleName === this.selectedRole) {
       this.selectedRole = '';
+      this.filterChampions();
     }
-    else this.selectedRole = roleName;
+    else {
+      this.selectedRole = roleName;
+      this.filterChampions();
+    }
   }
 
   selectSearch(championName: string): void {
     this.selectedName = championName;
+    this.filterChampions();
   }
 
-  getFilteredChampions(): IChampion[] {
+  filterChampions(): void {
     if (this.selectedRole && this.selectedName.length > 0) {
-      this.SortedChampions = this.Champions.filter(champion => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase())).filter(champion => champion.roles.includes(this.selectedRole));
-      return this.SortedChampions;
+      this.SortedChampions$ = this.Champions$.pipe(map((champions) => champions.filter((champion) => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase())).filter((champion) => champion.roles.includes(this.selectedRole)))
+      );
+
     }
 
     if (this.selectedRole && this.selectedName.length === 0) {
-      this.SortedChampions = this.Champions.filter(champion => champion.roles.includes(this.selectedRole));
-      return this.SortedChampions;
+      this.SortedChampions$ = this.Champions$.pipe(map((champions) => champions.filter((champion) => champion.roles.includes(this.selectedRole))));
     }
 
     if (!this.selectedRole && this.selectedName.length > 0) {
-      this.SortedChampions = this.Champions.filter(champion => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase()));
-      return this.SortedChampions;
+      this.SortedChampions$ = this.Champions$.pipe(map((champions) => champions.filter((champion) => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase()))));
     }
-
-    return this.Champions;
   }
 
   sendChampToLane(champion: IChampion): void {
@@ -134,7 +136,7 @@ export class ChampionSelectComponent {
     this.teamFull = false;
   }
 
-  isRoleMatched(champion: any, role: string): boolean {
+  isRoleMatched(champion: IChampion, role: string): boolean {
     if (champion && champion.roles && champion.roles.includes(role)) {
       return true;
     }
