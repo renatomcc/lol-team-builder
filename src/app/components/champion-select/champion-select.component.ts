@@ -49,7 +49,6 @@ export class ChampionSelectComponent {
     if (this.selectedRole && this.selectedName.length > 0) {
       this.SortedChampions$ = this.Champions$.pipe(map((champions) => champions.filter((champion) => champion.name.toLocaleLowerCase().includes(this.selectedName.toLocaleLowerCase())).filter((champion) => champion.roles.includes(this.selectedRole)))
       );
-
     }
 
     if (this.selectedRole && this.selectedName.length === 0) {
